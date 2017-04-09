@@ -22,13 +22,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The class annotated with this will be used as basis for the configuration
+ * Methods annotated with this will not be propagated into the ACRAConfiguration class
  *
  * @author F43nd1r
  * @since 17.03.2017
  */
 
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.TYPE)
-public @interface ConfigurationBuilder {
+@Target(ElementType.METHOD)
+public @interface NoPropagation {
 }

@@ -20,7 +20,7 @@ import android.support.annotation.NonNull;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
-import org.acra.annotation.Hide;
+import org.acra.annotation.NoPropagation;
 import org.acra.dialog.CrashReportDialog;
 import org.acra.sender.HttpSender;
 
@@ -36,15 +36,13 @@ import static org.acra.ACRA.LOG_TAG;
 import static org.acra.ACRAConstants.*;
 
 /**
- * Builder responsible for programmatic construction of an {@link ACRAConfiguration}.
- *
- * {@link ACRAConfiguration} should be considered immutable and in the future will be.
+ * Builder responsible for programmatic construction of an immutable {@link ACRAConfiguration}.
  *
  * @since 4.8.1
  */
 @SuppressWarnings("unused")
 @org.acra.annotation.ConfigurationBuilder
-public final class ConfigurationBuilder extends BaseConfigurationBuilder{
+public final class ConfigurationBuilder extends BaseConfigurationBuilder<ConfigurationBuilder> {
 
     private final Map<String, String> httpHeaders;
     private final Map<ReportField, Boolean> reportContentChanges;
@@ -71,7 +69,7 @@ public final class ConfigurationBuilder extends BaseConfigurationBuilder{
      * @return new ACRAConfiguration containing all the properties configured on this builder.
      * @throws ACRAConfigurationException if the required values for the configured notification mode have not been provided.
      */
-    @Hide
+    @NoPropagation
     @NonNull
     public ACRAConfiguration build() throws ACRAConfigurationException {
 
@@ -154,7 +152,7 @@ public final class ConfigurationBuilder extends BaseConfigurationBuilder{
         return httpHeaders;
     }
 
-    @Hide
+    @NoPropagation
     @NonNull
     @Override
     ReportField[] customReportContent() {
